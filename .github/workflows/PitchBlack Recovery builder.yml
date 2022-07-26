@@ -13,10 +13,10 @@ on:
   workflow_dispatch:
 
 env:
-  MANIFEST: https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni -b twrp-10.0-deprecated
-  DEVICE: KD7
-  DT_LINK: https://github.com/mastersenpai0405/recovery_device_tecno_KD7
-  DT_PATH: device/tecno/KD7
+  MANIFEST: https://github.com/PitchBlackRecoveryProject/manifest_pb.git -b android-10.0
+  DEVICE: CD6
+  DT_LINK: https://github.com/PitchBlackRecoveryProject/android_device_TECNO_CD6-pbrp
+  DT_PATH: device/TECNO/CD6
   TARGET: recoveryimage
   TZ: Asia/manila
 
@@ -63,6 +63,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          with:
           tag_name: TWRP_10.0
-          name: TWRP-KD7
+          name: TWRP-CD6
           files: | 
-            work/out/target/product/KD7/recovery.img
+            work/out/target/product/CD6/recovery.img
