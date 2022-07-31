@@ -88,9 +88,9 @@ jobs:
           path: |
             ~/.ccache
             ${{env.WorkSpace}}/out
-          key: ${{runner.os}}-${{env.Rec_name}}-${{env.Rec_ver}}-${{env.device}}
+          key: ${{runner.os}}-${{env.Rec_name}}-${{env.Rec_ver}}-${{env.bot}}
           restore-keys: |
-            ${{runner.os}}-${{env.Rec_name}}-${{env.Rec_ver}}-${{env.device}}
+            ${{runner.os}}-${{env.Rec_name}}-${{env.Rec_ver}}-${{env.bot}}
 
       - name: Setup ccache
         uses: alexjurkiewicz/setup-ccache@master
@@ -109,12 +109,11 @@ jobs:
           echo "::group::Set EnvPath"
           export ALLOW_MISSING_DEPENDENCIES=true
           export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
-          export LC_ALL="C"
           export OF_MAINTAINER="RC1844"
           export FOX_VERSION="Unofficial"
           echo "::endgroup::"
-          echo "::group::Lunch ${{env.ProductFileHeader}}_${{env.device}}-eng"
-          lunch ${{env.ProductFileHeader}}_${{env.device}}-eng
+          echo "::group::Lunch ${{env.ProductFileHeader}}_${{env.bot}}-eng"
+          lunch ${{env.ProductFileHeader}}_${{env.bot}}-eng
           echo "::endgroup::"
           echo "::group::Build ${{env.Rec_name}}"
           mka ${{env.target}}
@@ -131,8 +130,8 @@ jobs:
       - name: Show Space Info
         run: |
           cd ${{steps.info.outputs.OutFolder}}
-          sudo rm -rf ${{env.Rec_name}}_for_${{env.device}}_by_${{env.Author}}_*.zip
-          sudo zip -r9 ${{env.Rec_name}}_for_${{env.device}}_by_${{env.Author}}_${{github.run_id}}.zip recovery.img
+          sudo rm -rf ${{env.Rec_name}}_for_${{env.bot}}_by_${{env.Author}}_*.zip
+          sudo zip -r9 ${{env.Rec_name}}_for_${{env.bot}}_by_${{env.Author}}_${{github.run_id}}.zip recovery.img
           echo "::group::Out Directory Space"
           du -sh
           echo "::endgroup::"
@@ -149,7 +148,7 @@ jobs:
       - name: Upload firmware directory
         uses: actions/upload-artifact@main
         with:
-          name: ${{env.Rec_name}}_for_${{env.device}}-${{github.run_id}}
+          name: ${{env.Rec_name}}_for_${{env.bot}}-${{github.run_id}}
           path: ${{steps.info.outputs.OutFolder}}/*.img
 
       - name: Upload Release
@@ -159,12 +158,12 @@ jobs:
           files: |
             ${{steps.info.outputs.OutFolder}}/recovery.img
             ${{steps.info.outputs.OutFolder}}/*.zip
-          name: ${{env.Rec_name}}-${{env.device}}_${{github.run_id}}
-          tag_name: ${{env.device}}-${{env.Rec_name}}-${{steps.info.outputs.date}}
+          name: ${{env.Rec_name}}-${{env.bot}}_${{github.run_id}}
+          tag_name: ${{env.bot}}-${{env.Rec_name}}-${{steps.info.outputs.date}}
           body: |
-            ${{env.Rec_name}}-${{env.Rec_ver}} for ${{env.device}} build at ${{steps.info.outputs.date}}
+            ${{env.Rec_name}}-${{env.Rec_ver}} for ${{env.bot}} build at ${{steps.info.outputs.date}}
             Actions:[${{github.run_id}}](${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}})
-            Download:[${{env.Rec_name}}_for_${{env.device}}_by_${{env.Author}}_${{github.run_id}}.zip](https://download.fastgit.org/${{github.repository}}/releases/download/${{env.device}}-${{env.Rec_name}}-${{steps.info.outputs.date}}/${{env.Rec_name}}_for_${{env.device}}_by_${{env.Author}}_${{github.run_id}}.zip)
+            Download:[${{env.Rec_name}}_for_${{env.bot}}_by_${{env.Author}}_${{github.run_id}}.zip](https://download.fastgit.org/${{github.repository}}/releases/download/${{env.bot}}-${{env.Rec_name}}-${{steps.info.outputs.date}}/${{env.Rec_name}}_for_${{env.bot}}_by_${{env.Author}}_${{github.run_id}}.zip)
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
