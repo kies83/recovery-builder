@@ -21,7 +21,7 @@ env:
   device: X655C
   DT_url: https://github.com/kies83/recovery_device_infinix_x655c_h6211abkg-q-op
   DT_path: device/infinix/X655C
-  ProductFileHeader: twrp
+  ProductFileHeader: omni
   target: recoveryimage
   WorkSpace: WorkSpace
   TZ: Asia/Karachi
