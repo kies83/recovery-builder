@@ -13,10 +13,10 @@ on:
   workflow_dispatch:
 
 env:
-  MANIFEST: https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni -b twrp-10.0-deprecated
+  MANIFEST: https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-11
   DEVICE: X655C
-  DT_LINK: https://github.com/kies83/recovery_device_infinix_x655c_h6211abkg-q-op
-  DT_PATH: device/infinix/X655C
+  DT_LINK: https://github.com/kies83/twrp_infinix_X655C
+  DT_PATH: device/infinix/Infinix-X655C
   TARGET: recoveryimage
   TZ: Asia/Karachi
 
@@ -62,7 +62,7 @@ jobs:
          env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          with:
-          tag_name: TWRP_11.0
+          tag_name: TWRP_10.0
           name: TWRP-X655C
           files: | 
             work/out/target/product/X655C/recovery.img
