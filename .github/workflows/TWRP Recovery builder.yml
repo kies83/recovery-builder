@@ -16,7 +16,7 @@ env:
   MANIFEST: https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni -b twrp-10.0-deprecated
   DEVICE: X655C
   DT_LINK: https://github.com/kies83/twrp_infinix_X655C
-  DT_PATH: device/infinix/Infinix-X655C
+  DT_PATH: device/infinix/X655C
   TARGET: recoveryimage
   TZ: Asia/Karachi
 
